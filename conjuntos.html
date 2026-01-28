@@ -4,16 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Datos Conjuntos - Monitoreo Climático</title>
+  <title>Gráficas - Monitoreo Climático</title>
 
   <!-- Estilos -->
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="Conjuntos.css" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-  <!-- Bootstrap y Leaflet -->
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -55,7 +54,10 @@
           <li class="nav-item"><a class="nav-link" href="estudio.html">Estudio</a></li>
           <li class="nav-item"><a class="nav-link" href="datos1.html">Datos 1</a></li>
           <li class="nav-item"><a class="nav-link" href="datos2.html">Datos 2</a></li>
-          <li class="nav-item"><a class="nav-link active" href="conjuntos.html">Datos Conjuntos</a></li>
+
+          <!-- ✅ Cambiado: antes "Datos Conjuntos" -->
+          <li class="nav-item"><a class="nav-link active" href="conjuntos.html">Gráficas</a></li>
+
           <li class="nav-item"><a class="nav-link" href="historicos.html">Historicos</a></li>
           <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
         </ul>
@@ -65,60 +67,29 @@
 
   <!-- Banner / Encabezado -->
   <header class="hero-header text-center">
-    <img src="encabezado_conjuntos.jpg" alt="Encabezado Comparativo" class="img-fluid" />
+    <img src="encabezado_conjuntos.jpg" alt="Encabezado Gráficas" class="img-fluid" />
   </header>
 
-  <!-- Secciones (mapa, tabla, gráficas, histórico, análisis) -->
+  <!-- ✅ SOLO GRÁFICAS (Datos 1 / Z1) -->
   <section class="seccion-estudio-blanco">
-    <h2>Ubicación de Sensores</h2>
-    <div id="mapaSensor" style="height: 400px; border-radius: 10px;"></div>
-  </section>
+    <h2>Gráficas (Datos 1 - Zona Z1)</h2>
 
-  <section class="seccion-estudio-gris">
-    <h2>Datos en Tiempo Real</h2>
-    <table id="tablaConjunta" class="table table-striped">
-      <thead>
-        <tr>
-          <th>Hora</th>
-          <th>Temp Z1</th>
-          <th>Hum Z1</th>
-          <th>Temp Z2</th>
-          <th>Hum Z2</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-
-  <section class="seccion-estudio-blanco">
-    <h2>Gráficas Comparativas</h2>
     <div class="graf-container">
-      <canvas id="graficaTempZonas"></canvas>
-      <canvas id="graficaHumZonas"></canvas>
+      <div class="graf-card">
+        <h3 class="graf-title">Temperatura (últimas lecturas)</h3>
+        <canvas id="graficaTempZ1"></canvas>
+      </div>
+
+      <div class="graf-card">
+        <h3 class="graf-title">Humedad (últimas lecturas)</h3>
+        <canvas id="graficaHumZ1"></canvas>
+      </div>
     </div>
   </section>
 
   <section class="seccion-estudio-gris">
-    <h2>Histórico de Temperatura y Humedad</h2>
-    <table id="tablaHistorica" class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Hora</th>
-          <th>Día 1</th>
-          <th>Día 2</th>
-          <th>Día 3</th>
-          <th>Día 4</th>
-          <th>Día 5</th>
-          <th>Recomendado</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-
-  <section class="seccion-estudio-blanco">
-    <h2>Análisis Rápido</h2>
-    <p id="analisis"></p>
+    <h2>Resumen</h2>
+    <p id="analisis">Cargando...</p>
   </section>
 
   <!-- Footer -->
@@ -130,16 +101,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- ✅ Tu JS -->
   <script src="Conjuntos.js"></script>
 
   <!-- Animación scroll -->
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("seccion-visible");
-        }
+        if (entry.isIntersecting) entry.target.classList.add("seccion-visible");
       });
     }, { threshold: 0.2 });
 
