@@ -1,113 +1,133 @@
+/* ================== FONDO GENERAL ================== */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  background: url("fondo_tabla.jpg") no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #ffffff, #f0f0f0);
-  color: #333;
+  font-family: "Segoe UI", sans-serif;
+  color: white;
 }
 
-header {
-  background-color: #2196f3;
-  padding: 10px 0;
+/* ================== TARJETAS DIFUMINADAS ================== */
+.seccion-estudio-blanco,
+.seccion-estudio-gris {
+  background-color: rgba(0, 0, 51, 0.5);
+  color: white;
+  padding: 30px;
+  border-radius: 14px;
+  margin: 20px auto;
+  width: 90%;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s ease;
+}
+
+.seccion-visible {
+  opacity: 1 !important;
+  transform: translateY(0px) !important;
+}
+
+/* ================== TÍTULOS ================== */
+.titulo-estudio {
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
   text-align: center;
   color: white;
-  font-size: 1.8rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-nav {
-  background-color: #0d47a1;
-  display: flex;
-  justify-content: center;
-  padding: 8px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.texto-estudio {
+  font-size: 1.05rem;
+  text-align: justify;
+  color: #f0f0f0;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 20px;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.3s;
+/* ================== CONTENEDOR FILTROS ================== */
+.filtros-glass,
+.descargas-glass {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  padding: 15px 18px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-nav a:hover {
-  color: #bbdefb;
+.filtros-glass label {
+  font-size: 0.9rem;
 }
 
-.banner {
-  width: 100%;
-  height: 180px;
-  background-image: url('banner_historicos.jpg'); /* Puedes cambiar esta imagen */
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.9);
+.descargas-glass button {
+  font-weight: 700;
 }
 
-main {
-  padding: 30px 15px;
-  max-width: 1200px;
-  margin: auto;
+/* ================== TABLA HISTÓRICA ================== */
+.glass-table {
+  background-color: rgba(0, 0, 51, 0.45);
+  border-radius: 14px;
+  padding: 10px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
-.filtro-fecha {
-  margin-bottom: 25px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.filtro-fecha label {
-  font-weight: bold;
-}
-
-#fechaFiltro {
-  padding: 5px 10px;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-table {
+#tablaHistoricos {
+  background-color: transparent;
   width: 100%;
   border-collapse: collapse;
-  backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  overflow: hidden;
 }
 
-thead {
-  background-color: #0d47a1;
+#tablaHistoricos thead {
+  background-color: rgba(13, 71, 161, 0.85);
   color: white;
 }
 
-th, td {
-  padding: 12px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-
-tr:hover {
-  background-color: #e3f2fd;
-}
-
-caption {
-  caption-side: top;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 10px;
-  color: #0d47a1;
-}
-
-footer {
-  text-align: center;
-  margin-top: 30px;
+#tablaHistoricos th,
+#tablaHistoricos td {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: white;
   font-size: 0.9rem;
-  color: #666;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#tablaHistoricos tbody tr:hover {
+  background-color: rgba(33, 150, 243, 0.25);
+}
+
+/* ================== BOTÓN CARGAR MÁS ================== */
+#btnCargarMas {
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 8px 22px;
+}
+
+/* ================== ESTADO / MENSAJES ================== */
+#estado {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ================== FOOTER ================== */
+footer {
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 768px) {
+  .filtros-glass,
+  .descargas-glass {
+    width: 100%;
+  }
+
+  #tablaHistoricos th,
+  #tablaHistoricos td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
 }
