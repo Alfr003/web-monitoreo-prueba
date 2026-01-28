@@ -20,105 +20,35 @@ L.circle([10.0777, -84.4857], {
 
 // ========== 2. Llenar tablaDatos desde API en Render (autosync cada 5s) ==========
 
-// ✅ PON AQUÍ TU API DE RENDER (la que ya te sirve /api/datos y /api/historial)
 const API_BASE = "https://api-monitoreo-nube.onrender.com";
 
-// cuántas filas quieres mostrar en "últimas mediciones"
-const MAX_FILAS = 12;
-
-// cada cuánto actualizar (ms)
-const INTERVALO_MS = 5000;
-
-// ---- helpers ----
-function parseFechaFlexible(s) {
-  // soporta "YYYY-MM-DD HH:MM:SS" o ISO "YYYY-MM-DDTHH:MM:SS.sss"
-  if (!s) return null;
-
-  // si viene con espacio, lo convertimos a ISO
-  if (typeof s === "string" && s.includes(" ") && !s.includes("T")) {
-    // "2026-01-28 01:32:57" => "2026-01-28T01:32:57"
-    const iso = s.replace(" ", "T");
-    const d = new Date(iso);
-    if (!isNaN(d.getTime())) return d;
-  }
-
-  const d = new Date(s);
-  if (!isNaN(d.getTime())) return d;
-
-  return null;
-}
-
-function fmtHora(d) {
-  if (!d) return "--:--:--";
-  const hh = String(d.getHours()).padStart(2, "0");
-  const mm = String(d.getMinutes()).padStart(2, "0");
-  const ss = String(d.getSeconds()).padStart(2, "0");
-  return `${hh}:${mm}:${ss}`;
-}
-
-function n2(x) {
-  const v = Number(x);
-  return Number.isFinite(v) ? v.toFixed(2) : "-";
-}
-
-// ---- render tabla ----
-function pintarTablaDesdeLista(lista) {
-  const tbody = document.querySelector("#tablaDatos tbody");
-  if (!tbody) return;
-
-  tbody.innerHTML = "";
-
-  // mostramos los más nuevos primero
-  const rows = lista.slice(0, MAX_FILAS);
-
-  rows.forEach((dato) => {
-    const d = parseFechaFlexible(dato.timestamp) || parseFechaFlexible(dato.ts_server);
-    const tr = document.createElement("tr");
-
-    const tdHora = document.createElement("td");
-    tdHora.textContent = fmtHora(d);
-
-    const tdTemp = document.createElement("td");
-    tdTemp.textContent = `${n2(dato.temperatura)} °C`;
-
-    const tdHum = document.createElement("td");
-    tdHum.textContent = `${n2(dato.humedad)} %`;
-
-    tr.appendChild(tdHora);
-    tr.appendChild(tdTemp);
-    tr.appendChild(tdHum);
-    tbody.appendChild(tr);
-  });
-}
-
-// ---- fetch ----
 async function actualizarTablaDatos() {
   try {
-    // ✅ usamos /api/historial porque trae lista (y así llenas varias filas)
-    const res = await fetch("https://api-monitoreo-nube.onrender.com/api/historial", { cache: "no-store" })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const res = await fetch(`${API_BASE}/api/historial?n=12`, { cache: "no-store" });
     const data = await res.json();
 
-    // esperamos un arreglo
-    if (!Array.isArray(data)) {
-      console.warn("Respuesta inesperada en /api/historial:", data);
-      return;
-    }
-
-    pintarTablaDesdeLista(data);
-  } catch (err) {
-    console.error("Error al obtener datos de Render:", err);
-    // opcional: mostrar algo en la tabla si falla
     const tbody = document.querySelector("#tablaDatos tbody");
-    if (tbody && tbody.innerHTML.trim() === "") {
-      tbody.innerHTML = `<tr><td colspan="3">Sin conexión con el servidor</td></tr>`;
-    }
+    tbody.innerHTML = "";
+
+    data.reverse().forEach(d => {
+      const fila = document.createElement("tr");
+
+      fila.innerHTML = `
+        <td>${d.timestamp?.slice(11,16) || "--:--"}</td>
+        <td>${d.temperatura} °C</td>
+        <td>${d.humedad} %</td>
+      `;
+
+      tbody.appendChild(fila);
+    });
+
+  } catch (e) {
+    console.error("Error cargando datos:", e);
   }
 }
 
-// Llamada inicial + autosync
 actualizarTablaDatos();
-setInterval(actualizarTablaDatos, INTERVALO_MS);
+setInterval(actualizarTablaDatos, 5000);
 
 // ========== 3. Tabla histórica con datos simulados ==========
 const horasHist = ["02:00", "04:00", "06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00", "22:00", "24:00"];
@@ -212,5 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   secciones.forEach(sec => observer.observe(sec));
 });
+
 
 
