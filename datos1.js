@@ -50,80 +50,75 @@ async function actualizarTablaDatos() {
 actualizarTablaDatos();
 setInterval(actualizarTablaDatos, 5000);
 
-// ========== 3. Tabla histórica con datos simulados ==========
-const horasHist = ["02:00", "04:00", "06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00", "22:00", "24:00"];
-const dias = ["Vie. 5", "Sáb. 6", "Dom. 7", "Lun. 8", "Mar. 9"];
+// ========== 3. Tabla histórica (últimos 5 días reales desde API) ==========
+async function actualizarTablaHistorica() {
+  try {
+    const res = await fetch(`${API_BASE}/api/historicos?zona=Z1`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
 
-const datosHistoricos = {};
-const humedadesHistoricas = {};
+    // data: { dias, horas, celdas }
+    const tabla = document.getElementById("tablaHistorica");
+    const thead = tabla.querySelector("thead");
+    const tbody = tabla.querySelector("tbody");
 
-horasHist.forEach(hora => {
-  datosHistoricos[hora] = [];
-  humedadesHistoricas[hora] = [];
-  for (let i = 0; i < 5; i++) {
-    const temp = Math.floor(20 + Math.random() * 10);
-    const hum = Math.floor(60 + Math.random() * 25);
-    datosHistoricos[hora].push(temp);
-    humedadesHistoricas[hora].push(hum);
+    // 1) Encabezados (días reales)
+    // Encabezado: Hora | 5 días | Valores Recomendados
+    const dias = data.dias; // ej: ["Vie. 05","Sáb. 06",...]
+    thead.innerHTML = `
+      <tr>
+        <th>Hora</th>
+        ${dias.map(d => `<th>${d}</th>`).join("")}
+        <th>Valores Recomendados</th>
+      </tr>
+    `;
+
+    // 2) Cuerpo (12 horas)
+    tbody.innerHTML = "";
+
+    data.horas.forEach(hora => {
+      const fila = document.createElement("tr");
+
+      // primera columna Hora
+      const tdHora = document.createElement("td");
+      tdHora.textContent = hora;
+      fila.appendChild(tdHora);
+
+      // 5 columnas de días
+      const row = data.celdas[hora] || [];
+      row.forEach((celda) => {
+        const td = document.createElement("td");
+
+        if (!celda) {
+          td.textContent = ""; // vacío si aún no hay dato en ese bloque
+        } else {
+          // Si quieres barras luego, aquí es donde se meten.
+          // Por ahora dejamos texto simple (TEMP | HUM) o (HUM | TEMP) como gustes.
+          td.title = `Temp: ${celda.t}°C | Hum: ${celda.h}%`;
+          td.innerHTML = `<div style="font-weight:bold;">${celda.t.toFixed(1)}°C</div>
+                          <div style="opacity:.9;">${celda.h.toFixed(1)}%</div>`;
+        }
+
+        fila.appendChild(td);
+      });
+
+      // última columna recomendado (puedes ajustar valores reales)
+      const tdRec = document.createElement("td");
+      tdRec.className = "recomendado";
+      tdRec.textContent = "Temp 23–26°C | Hum 65–75%";
+      fila.appendChild(tdRec);
+
+      tbody.appendChild(fila);
+    });
+
+  } catch (err) {
+    console.error("Error tabla histórica:", err);
   }
-});
+}
 
-const tablaHist = document.getElementById("tablaHistorica").getElementsByTagName("tbody")[0];
-
-horasHist.forEach(hora => {
-  const fila = tablaHist.insertRow();
-  fila.insertCell(0).innerText = hora;
-
-  for (let i = 0; i < 5; i++) {
-    const temp = datosHistoricos[hora][i];
-    const hum = humedadesHistoricas[hora][i];
-
-    const celda = fila.insertCell();
-    celda.className = "celda-doble";
-
-    const contenedor = document.createElement("div");
-    contenedor.style.display = "flex";
-    contenedor.style.justifyContent = "center";
-    contenedor.style.alignItems = "center";
-    contenedor.style.height = "100%";
-    contenedor.style.width = "100%";
-    contenedor.style.backdropFilter = "blur(4px)";
-    contenedor.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-    contenedor.style.borderRadius = "6px";
-    contenedor.style.fontSize = "0.75rem";
-    contenedor.style.fontWeight = "bold";
-    contenedor.style.color = "white";
-    contenedor.title = `Temp: ${temp}°C | Hum: ${hum}%`;
-
-    const texto = document.createElement("span");
-    texto.innerText = `${hum} | ${temp}`;
-
-    contenedor.appendChild(texto);
-    celda.appendChild(contenedor);
-  }
-
-  // Columna final: valores recomendados
-  const celdaRec = fila.insertCell();
-  const contenedorRec = document.createElement("div");
-  contenedorRec.style.display = "flex";
-  contenedorRec.style.justifyContent = "center";
-  contenedorRec.style.alignItems = "center";
-  contenedorRec.style.height = "100%";
-  contenedorRec.style.width = "100%";
-  contenedorRec.style.backdropFilter = "blur(4px)";
-  contenedorRec.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-  contenedorRec.style.borderRadius = "6px";
-  contenedorRec.style.fontSize = "0.75rem";
-  contenedorRec.style.fontWeight = "bold";
-  contenedorRec.style.color = "white";
-  contenedorRec.title = "Recomendado: Temp 23-26°C | Hum 65-75%";
-
-  const textoRec = document.createElement("span");
-  textoRec.innerText = "70 | 24";
-
-  contenedorRec.appendChild(textoRec);
-  celdaRec.appendChild(contenedorRec);
-});
+// Llamada inicial + refresco cada 60s (o 30s si quieres)
+actualizarTablaHistorica();
+setInterval(actualizarTablaHistorica, 60000);
 
 
 // ========== 4. Efecto scroll para secciones ==========
@@ -142,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   secciones.forEach(sec => observer.observe(sec));
 });
+
 
 
 
