@@ -95,7 +95,6 @@ function pintarTablaDesdeLista(lista) {
 async function actualizarTablaDatos() {
   try {
     // ✅ usamos /api/historial porque trae lista (y así llenas varias filas)
-    const API_BASE = "https://api-monitoreo-nube.onrender.com";
     const res = await fetch("https://api-monitoreo-nube.onrender.com/api/historial", { cache: "no-store" })
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
@@ -213,4 +212,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   secciones.forEach(sec => observer.observe(sec));
 });
+
 
