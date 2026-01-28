@@ -20,3 +20,91 @@
 @media (max-width: 992px) {
   .graf-container { grid-template-columns: 1fr; }
 }
+
+/* ===== Estilo "glass" tipo Datos 1 ===== */
+.glass-card{
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.20);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+  overflow: hidden;
+}
+
+.graf-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.graf-card{
+  padding: 16px 16px 12px 16px;
+  transform: translateY(0);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.graf-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 24px 55px rgba(0,0,0,0.22);
+}
+
+.graf-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.graf-title{
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+/* ===== valor actual ===== */
+.valor-actual{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pill{
+  font-weight: 800;
+  font-size: .75rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+  color: white;
+}
+
+.pill-temp{ background: rgba(33,150,243,0.35); }
+.pill-hum{  background: rgba(76,175,80,0.35); }
+
+.valor-num{
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #ffffff;
+  min-width: 52px;
+  text-align: right;
+}
+
+.valor-unit{
+  font-size: .85rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+}
+
+/* Responsive */
+@media (max-width: 992px){
+  .graf-container{ grid-template-columns: 1fr; }
+}
