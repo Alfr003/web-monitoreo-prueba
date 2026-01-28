@@ -39,7 +39,19 @@ async function actualizarTablaDatos() {
 
       // 👇 usa ts_server (porque en tu app.py estás guardando ts_server)
       const ts = d.ts_server || d.timestamp || "";
-      const hora = ts ? ts.slice(11,16) : "--:--";
+let hora = "--:--";
+
+if (ts) {
+  // ts_server viene ISO (tipo "2026-01-28T16:48:00...") -> perfecto
+  // timestamp a veces viene "YYYY-MM-DD HH:MM:SS" -> lo convertimos a ISO
+  const iso = ts.includes("T") ? ts : ts.replace(" ", "T");
+
+  const dt = new Date(iso); // el navegador lo muestra en tu hora local
+  if (!isNaN(dt.getTime())) {
+    hora = dt.toLocaleTimeString("es-CR", { hour: "2-digit", minute: "2-digit" });
+  }
+}
+
 
       fila.innerHTML = `
         <td>${hora}</td>
@@ -178,5 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   secciones.forEach(sec => observer.observe(sec));
 });
+
 
 
