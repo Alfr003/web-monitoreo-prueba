@@ -1,23 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Monitoreo - Prueba Funcional</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red de Monitoreo Climático</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 </head>
+
 <body>
+ <!-- TOPBAR AZUL OSCURO -->
+<div style="background-color: #003366; padding: 5px 20px; display: flex; align-items: center;">
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <img src="logo_ucr.png" alt="Logo UCR" style="height: 40px;" />
+    <img src="logo1.png" alt="Logo 1" style="height: 40px;" />
+    <img src="logo2.png" alt="Logo 2" style="height: 40px;" />
+  </div>
+  <div style="margin-left: auto;">
+    <a href="#" style="color: white; margin-left: 15px;">Inicio</a>
+    <a href="#" style="color: white; margin-left: 15px;">EN</a>
+    <a href="#" style="color: white; margin-left: 15px;">Accesibilidad</a>
+    <a href="#" style="color: white; margin-left: 15px;">Contacto</a>
+  </div>
+</div>
 
-  <h2>Monitoreo Climático (Prueba)</h2>
 
-  <h3>Último dato</h3>
-  <div id="ultimo">Cargando...</div>
+  <!-- Barra de navegación -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm sticky-top bg-white" data-aos="fade-down">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Monitoreo Climático</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="estudio.html">Estudio</a></li>
+          <li class="nav-item"><a class="nav-link" href="datos1.html">Datos 1</a></li>
+          <li class="nav-item"><a class="nav-link" href="datos2.html">Datos 2</a></li>
+          <li class="nav-item"><a class="nav-link" href="conjuntos.html">Datos Conjuntos</a></li>
+          <li class="nav-item"><a class="nav-link" href="historicos.html">Historicos</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <hr>
+  <!-- Encabezado con imagen -->
+  <header class="hero-header text-center" data-aos="zoom-in">
+    <img src="encabezado_ucr.jpg" alt="Banner encabezado" class="img-fluid" />
+  </header>
 
-  <h3>Historial en vivo</h3>
-  <div id="estado">Conectando...</div>
-  <div id="historial" style="font-family: monospace; white-space: pre-wrap;"></div>
+  <!-- Contenido principal estilo INECOL -->
+  <main class="container-fluid cuerpo-inecol" data-aos="fade-up">
+    <div class="row align-items-center">
+      <div class="col-md-5 text-center" data-aos="fade-right">
+        <img src="colibri.png" alt="Colibrí" class="img-fluid colibri-img" />
+      </div>
+      <div class="col-md-6 offset-md-1" data-aos="fade-left">
+        <h2 class="titulo-inecol">Red de Monitoreo Climático</h2>
+        <p class="texto-inecol">
+          La conformación del proyecto surgió del interés por monitorear variables climáticas de manera precisa y en tiempo real, utilizando tecnologías abiertas y accesibles.<br /><br />
+          Este esfuerzo colaborativo busca generar información confiable para la toma de decisiones en el ámbito ambiental, facilitando estudios de temperatura y humedad mediante sensores distribuidos y plataformas visuales modernas.<br /><br />
+          El proyecto se implementará en colaboración con el INECOL y la Universidad de Costa Rica, siendo una herramienta educativa y científica de gran valor.
+        </p>
+      </div>
+    </div>
+  </main>
 
-  <script src="prueba.js"></script>
+  <!-- Footer -->
+  <footer class="text-center py-4 bg-light text-muted" data-aos="fade-up">
+    &copy; 2025 Universidad de Costa Rica - Proyecto de Monitoreo Climático
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 </body>
+
 </html>

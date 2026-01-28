@@ -1,0 +1,156 @@
+/* ----------------------------------------- */
+/* Estilos globales del cuerpo de la página */
+/* ----------------------------------------- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente legible y moderna */
+  background-color: #f8f9fa; /* Color de fondo suave gris claro */
+  color: #212529; /* Color de texto principal: gris oscuro */
+  margin: 0; /* Elimina el margen predeterminado del body */
+}
+
+html {
+  scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en anclas */
+}
+
+/* ----------------------------------------- */
+/* Encabezado superior institucional (barra azul) */
+/* ----------------------------------------- */
+.topbar {
+  background-color: rgba(0, 51, 102, 1); /* Azul UCR sólido */
+  color: white; /* Texto blanco */
+  font-size: 14px; /* Tamaño de fuente pequeño */
+  padding: 8px 0; /* Espaciado vertical */
+  transition: background-color 0.3s ease; /* Transición suave al cambiar opacidad */
+}
+
+.topbar.scrolled {
+  background-color: rgba(0, 51, 102, 0.5); /* Al hacer scroll, se vuelve semitransparente */
+}
+
+/* ----------------------------------------- */
+/* Enlaces del encabezado superior */
+/* ----------------------------------------- */
+.topbar a {
+  color: rgba(255, 255, 255, 1); /* Enlaces en blanco sólido */
+  margin-left: 15px; /* Separación entre enlaces */
+  text-decoration: none; /* Sin subrayado */
+  font-weight: 500; /* Peso medio */
+}
+
+.topbar a:hover {
+  text-decoration: underline; /* Subrayado al pasar el mouse */
+  color: rgba(255, 255, 255, 0.75); /* Blanco más suave al pasar el mouse */
+}
+
+/* ----------------------------------------- */
+/* Barra de navegación principal */
+/* ----------------------------------------- */
+.navbar-brand {
+  font-weight: bold; /* Negrita para el nombre de marca */
+  color: #003366 !important; /* Azul oscuro institucional */
+  font-size: 20px; /* Tamaño mediano de fuente */
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500; /* Peso medio para enlaces */
+  color: #003366 !important; /* Mismo azul oscuro */
+  margin-left: 15px; /* Separación entre ítems */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff !important; /* Azul claro al pasar el mouse */
+}
+
+/* ----------------------------------------- */
+/* Sección de encabezado grande con imagen */
+/* ----------------------------------------- */
+.hero-header {
+  background: linear-gradient(to bottom, #0074b7, #eaf9ff); /* Degradado de azul a blanco */
+  padding: 0; /* Sin espacio interno */
+}
+
+.hero-header img {
+  width: 100%; /* Imagen ocupa todo el ancho */
+  height: auto; /* Altura automática para mantener proporción */
+  max-height: 300px; /* Límite de altura */
+  object-fit: cover; /* Recorta la imagen sin deformarla */
+}
+
+/* ----------------------------------------- */
+/* Estilo tipo INECOL para cuerpo con imagen y texto */
+/* ----------------------------------------- */
+.cuerpo-inecol {
+  background-image: url('fondo-hojas-inecol.jpg'); /* Fondo de hojas tipo INECOL */
+  background-size: cover; /* Cubre todo el fondo sin repetir */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* No se repite la imagen de fondo */
+  padding: 60px 5% 60px 5%; /* Espaciado superior, inferior y laterales */
+  color: #333; /* Color oscuro para texto */
+  font-family: 'Georgia', serif; /* Fuente elegante similar a INECOL */
+  font-size: 18px; /* Tamaño de letra legible */
+  line-height: 1.7; /* Espaciado entre líneas */
+  animation: fadeIn 1.2s ease-in-out both; /* Animación de entrada */
+}
+
+.cuerpo-inecol .titulo-inecol {
+  font-family: 'Georgia', serif; /* Fuente elegante */
+  font-size: 32px; /* Título grande */
+  color: #00695c; /* Verde institucional suave */
+  font-weight: 600; /* Semi-negrita */
+  margin-bottom: 20px; /* Separación inferior */
+  animation: slideUp 1.2s ease-in-out both; /* Animación al aparecer */
+}
+
+.cuerpo-inecol .texto-inecol {
+  font-size: 18px; /* Texto mediano */
+  line-height: 1.7; /* Buena legibilidad */
+  background-color: rgba(255, 255, 255, 0); /* Sin fondo adicional */
+  padding: 25px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: none; /* Sin sombra */
+  text-align: justify; /* Justificación de texto como en INECOL */
+  animation: fadeIn 1.4s ease-in-out both; /* Animación de aparición suave */
+}
+
+/* Imagen del colibrí */
+.colibri-img {
+  max-height: 350px; /* Tamaño máximo ajustado para buena calidad */
+  width: auto; /* Mantiene proporciones */
+  margin-top: 20px; /* Espaciado superior */
+  animation: fadeIn 1.5s ease-in-out both; /* Animación de entrada */
+}
+
+/* ----------------------------------------- */
+/* Animaciones suaves estilo INECOL */
+/* ----------------------------------------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Comienza invisible */
+    transform: translateY(20px); /* Ligeramente desplazado hacia abajo */
+  }
+  to {
+    opacity: 1; /* Aparece completamente */
+    transform: translateY(0); /* En posición final */
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ----------------------------------------- */
+/* Pie de página */
+/* ----------------------------------------- */
+footer {
+  background-color: #f1f1f1; /* Fondo gris claro */
+  font-size: 14px; /* Tamaño pequeño */
+  color: #555; /* Texto gris oscuro */
+  border-top: 1px solid #ddd; /* Línea superior */
+}

@@ -1,0 +1,271 @@
+/* ----------------------------------------- */
+/* Estilos globales del cuerpo de la página */
+/* ----------------------------------------- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente principal del sitio */
+  background-color: #f8f9fa; /* Color de fondo global */
+  color: #212529; /* Color de texto predeterminado */
+  margin: 0; /* Eliminar márgenes por defecto */
+}
+
+html {
+  scroll-behavior: smooth; /* Desplazamiento suave al hacer scroll */
+}
+
+/* ----------------------------------------- */
+/* Encabezado superior institucional (barra azul) */
+/* ----------------------------------------- */
+.topbar {
+  background-color: rgba(0, 51, 102, 1); /* Azul oscuro */
+  color: white; /* Texto blanco */
+  font-size: 14px; /* Tamaño de texto */
+  padding: 8px 0; /* Espaciado vertical */
+  transition: background-color 0.3s ease; /* Transición suave al cambiar color */
+}
+
+.topbar.scrolled {
+  background-color: rgba(0, 51, 102, 0.5); /* Azul oscuro con 50% opacidad al hacer scroll */
+}
+
+/* ----------------------------------------- */
+/* Enlaces del encabezado superior */
+/* ----------------------------------------- */
+.topbar a {
+  color: rgba(255, 255, 255, 1); /* Blanco sólido */
+  margin-left: 15px; /* Espacio entre enlaces */
+  text-decoration: none; /* Sin subrayado */
+  font-weight: 500; /* Peso del texto */
+}
+
+.topbar a:hover {
+  text-decoration: underline; /* Subrayado al pasar el mouse */
+  color: rgba(255, 255, 255, 0.75); /* Blanco más suave */
+}
+
+/* ----------------------------------------- */
+/* Barra de navegación principal */
+/* ----------------------------------------- */
+.navbar-brand {
+  font-weight: bold; /* Negrita */
+  color: #003366 !important; /* Azul oscuro */
+  font-size: 20px; /* Tamaño de letra */
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500; /* Negrita media */
+  color: #003366 !important; /* Azul oscuro */
+  margin-left: 15px; /* Separación entre enlaces */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff !important; /* Azul brillante al pasar el mouse */
+}
+
+/* ----------------------------------------- */
+/* Sección de encabezado grande con imagen */
+/* ----------------------------------------- */
+.hero-header {
+  background: linear-gradient(to bottom, #0074b7, #eaf9ff); /* Degradado azul a claro */
+  padding: 0;
+}
+
+.hero-header img {
+  width: 100%; /* Ancho completo */
+  height: auto; /* Altura automática */
+  max-height: 300px; /* Altura máxima */
+  object-fit: cover; /* Ajuste de imagen */
+}
+
+/* ----------------------------------------- */
+/* Estilo tipo INECOL para cuerpo con imagen y texto */
+/* ----------------------------------------- */
+.cuerpo-inecol {
+  background-image: url('fondo-hojas-inecol.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 60px 5% 60px 5%;
+  color: #333;
+}
+
+.cuerpo-inecol .titulo-inecol {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 32px;
+  color: #00695c;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.cuerpo-inecol .texto-inecol {
+  font-size: 18px;
+  line-height: 1.7;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+  text-align: justify; /* Texto justificado */
+}
+
+.colibri-img {
+  max-height: 1000px;
+  width: auto;
+  margin-top: 20000;
+}
+
+/* ----------------------------------------- */
+/* Sección de contenido blanco estilo estudios */
+/* ----------------------------------------- */
+.seccion-estudio-blanco {
+  background-color: #ffffff; /* Fondo blanco */
+  padding: 60px 15% 60px 15%;
+  text-align: justify; /* Justificado */
+}
+
+.seccion-estudio-blanco h2 {
+  color: #005691; /* Azul similar al sitio UCR */
+  font-weight: 700;
+  text-align: center;
+  border-left: 4px solid #f6921e; /* Línea naranja */
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+
+/* ----------------------------------------- */
+/* Sección de contenido gris estilo estudios */
+/* ----------------------------------------- */
+.seccion-estudio-gris {
+  background-color: #cecece; /* Gris claro */
+  padding: 60px 15% 60px 15%;
+  text-align: justify; /* Justificado */
+}
+
+.seccion-estudio-gris h2 {
+  color: #005691; /* Azul igual al de UCR */
+  font-weight: 700;
+  text-align: center;
+  border-left: 4px solid #f6921e; /* Línea naranja */
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+
+/* ----------------------------------------- */
+/* Pie de página */
+/* ----------------------------------------- */
+footer {
+  background-color: #f1f1f1;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ddd;
+}
+
+/* ----------------------------------------- */
+/* Cuadros interactivos tipo tarjetas */
+/* ----------------------------------------- */
+.tarjeta-cuadro {
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
+  border: none; /* Quitar bordes */
+  margin-bottom: 30px; /* Espacio inferior */
+}
+
+.tarjeta-cuadro:hover {
+  transform: scale(1.03); /* Efecto de ampliación */
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2); /* Sombra al pasar el mouse */
+}
+
+.tarjeta-cuadro img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.tarjeta-cuadro .titulo {
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 0;
+  color: white;
+  background-color: #005691;
+  text-align: center;
+}
+
+/* ----------------------------------------- */
+/* Modal para mostrar contenido al dar clic */
+/* ----------------------------------------- */
+.modal-custom {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro */
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-custom .contenido-modal {
+  background-color: #fff;
+  margin: 80px auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 900px;
+  animation: zoomIn 0.3s ease-in-out;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-custom .contenido-modal img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.modal-custom .contenido-modal p,
+.modal-custom .contenido-modal ul {
+  flex: 1;
+  text-align: justify;
+}
+
+.modal-custom .cerrar-modal {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #f6921e;
+  cursor: pointer;
+}
+
+.modal-custom .btn-cerrar {
+  margin-top: 20px;
+  background-color: #f6921e;
+  color: white;
+  font-weight: bold;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+}
+
+/* ----------------------------------------- */
+/* Animaciones de entrada para modales */
+/* ----------------------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
