@@ -10,7 +10,6 @@ const N_PUNTOS = 60;
 
 // =================== Helpers ===================
 function obtenerHoraLocal(ts) {
-  // ts puede ser ISO: "2026-01-28T11:19:35.489761" o "YYYY-MM-DD HH:MM:SS"
   if (!ts) return "--:--";
 
   // Normaliza a algo que Date entienda
@@ -43,14 +42,32 @@ const chartTemp = new Chart(ctxTemp, {
     datasets: [{
       label: "Temperatura (°C)",
       data: dataTemp,
-      tension: 0.25
+      tension: 0.25,
+      pointRadius: 2,
+      pointHoverRadius: 4,
+      borderWidth: 2
     }]
   },
   options: {
     responsive: true,
-    animation: false,
-    plugins: { legend: { position: "top" } },
-    scales: { y: { ticks: { callback: (v) => `${v}` } } }
+    animation: { duration: 450 },
+    plugins: {
+      legend: { position: "top" },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ` ${Number(ctx.parsed.y).toFixed(1)} °C`
+        }
+      }
+    },
+    scales: {
+      y: {
+        grace: "5%",
+        ticks: {
+          stepSize: 0.5,
+          callback: (v) => Number(v).toFixed(1)
+        }
+      }
+    }
   }
 });
 
@@ -61,14 +78,32 @@ const chartHum = new Chart(ctxHum, {
     datasets: [{
       label: "Humedad (%)",
       data: dataHum,
-      tension: 0.25
+      tension: 0.25,
+      pointRadius: 2,
+      pointHoverRadius: 4,
+      borderWidth: 2
     }]
   },
   options: {
     responsive: true,
-    animation: false,
-    plugins: { legend: { position: "top" } },
-    scales: { y: { ticks: { callback: (v) => `${v}` } } }
+    animation: { duration: 450 },
+    plugins: {
+      legend: { position: "top" },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ` ${Number(ctx.parsed.y).toFixed(1)} %`
+        }
+      }
+    },
+    scales: {
+      y: {
+        grace: "5%",
+        ticks: {
+          stepSize: 0.5,
+          callback: (v) => Number(v).toFixed(1)
+        }
+      }
+    }
   }
 });
 
@@ -102,13 +137,20 @@ async function actualizarGraficas() {
     chartTemp.update();
     chartHum.update();
 
-    // Resumen
+    // Resumen + valores actuales
     const last = datosZ1[datosZ1.length - 1];
     if (last) {
       const t = Number(last.temperatura);
       const h = Number(last.humedad);
 
-      let msg = `Última lectura Z1: ${t.toFixed(2)} °C | ${h.toFixed(2)} %`;
+      // ✅ valores actuales al lado de cada gráfica
+      const elT = document.getElementById("tempActual");
+      const elH = document.getElementById("humActual");
+      if (elT) elT.innerText = t.toFixed(1);
+      if (elH) elH.innerText = h.toFixed(1);
+
+      // ✅ menos decimales en el resumen
+      let msg = `Última lectura Z1: ${t.toFixed(1)} °C | ${h.toFixed(1)} %`;
 
       // regla simple (ajústala si quieres)
       if (t >= 30) msg += " — ⚠️ Temperatura alta.";
