@@ -1,170 +1,22 @@
-/* Fondo general */
-body {
-  background: url("fondo_tabla.jpg") no-repeat center center fixed;
-  background-size: cover;
-  background-attachment: fixed;
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-}
-
-/* Topbar */
-.topbar {
-  background-color: #002b5c;
-  color: white;
-  padding: 10px 20px;
-  font-size: 14px;
-}
-
-.topbar a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
-}
-
-.topbar a:hover {
-  text-decoration: underline;
-}
-
-/* Navbar */
-.navbar {
-  background-color: white !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.navbar-brand {
-  font-weight: bold;
-  color: #003366;
-}
-
-.nav-link {
-  color: #003366 !important;
-  font-weight: 500;
-}
-
-.nav-link.active {
-  color: #007bff !important;
-}
-
-/* Banner */
-.banner {
-  background: url("encabezado_conjuntos.jpg") center/cover no-repeat;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-shadow: 2px 2px 5px black;
-  font-size: 2.2rem;
-  font-weight: bold;
-}
-
-/* Secciones tipo estudio */
-.seccion-estudio-blanco,
-.seccion-estudio-gris {
-  background-color: rgba(0, 0, 51, 0.5);
-  color: white;
-  padding: 30px;
-  border-radius: 12px;
-  margin: 20px auto;
-  width: 90%;
-  backdrop-filter: blur(3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease;
-}
-
-.seccion-visible {
-  opacity: 1 !important;
-  transform: translateY(0px) !important;
-}
-
-h2,
-h3 {
-  color: white;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* Tablas generales */
-table {
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-/* =================== TABLA HISTÓRICA DE DATOS =================== */
-#tablaHistorica {
-  background-color: white;
-  border-radius: 10px;
-  padding: 15px;
-  color: black;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-#tablaHistorica td {
-  position: relative;
-  height: 40px;
-  width: 80px;
-  padding: 0;
-  border: 1px solid #ddd;
-}
-
-#tablaHistorica .barra-temp {
-  background-color: #ff4d4d; /* rojo */
-  height: 100%;
-  width: 50%;
-  float: left;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-#tablaHistorica .barra-hum {
-  background-color: #4d79ff; /* azul */
-  height: 100%;
-  width: 50%;
-  float: right;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-#tablaHistorica th {
-  background-color: #f0f0f0;
-  color: #222;
-}
-
-/* Mapa */
-#mapaSensor {
-  height: 400px;
-  border-radius: 10px;
-  margin: 20px auto;
-}
-
-/* Gráficas */
 .graf-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 
-canvas {
-  background-color: white;
-  border-radius: 8px;
-  max-width: 600px;
-  width: 90%;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+.graf-card {
+  background: rgba(255,255,255,0.92);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.10);
 }
 
-/* Footer */
-footer {
-  background-color: #f0f0f0;
-  text-align: center;
-  padding: 15px;
-  margin-top: 40px;
-  font-size: 14px;
-  color: #333;
+.graf-title {
+  margin: 0 0 10px 0;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
+@media (max-width: 992px) {
+  .graf-container { grid-template-columns: 1fr; }
+}
