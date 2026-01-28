@@ -19,7 +19,7 @@ L.circle([10.0777, -84.4857], {
 
 
 // ✅ tu API en Render (UNA SOLA VEZ)
-const API_BASE = "https://api-monitoreo-nube.onrender.com";
+const API_BASE = "http://10.80.205.28:5000";
 
 
 // ========== 2. Llenar tablaDatos desde API en Render (autosync cada 5s) ==========
@@ -177,3 +177,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   secciones.forEach(sec => observer.observe(sec));
 });
+
