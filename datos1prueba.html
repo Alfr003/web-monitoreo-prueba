@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Datos 1 (Prueba)</title>
+
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    h1 { margin: 0 0 10px 0; }
+    .estado { margin: 8px 0 16px 0; color: #444; }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      text-align: left;
+      padding: 12px 14px;
+      background: #d9e8ff;
+      font-size: 20px;
+    }
+    tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #eee;
+      font-size: 16px;
+    }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #f2f2f2;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Datos 1 (Prueba) <span class="pill" id="intervaloTxt">cada 5s</span></h1>
+  <div class="estado" id="estado">Conectando...</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Hora</th>
+        <th>Temperatura</th>
+        <th>Humedad</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      <!-- filas dinámicas -->
+    </tbody>
+  </table>
+
+  <script src="datos1prueba.js"></script>
+</body>
+</html>
