@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Históricos (Prueba)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .controles {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: center;
+    }
+
+    th {
+      background: #1976d2;
+      color: white;
+    }
+
+    #estado {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Históricos – Prueba funcional (Z1)</h1>
+
+  <div class="controles">
+    <select id="filtroMes">
+      <option value="">Mes (todos)</option>
+    </select>
+
+    <select id="filtroDia" disabled>
+      <option value="">Día (todos)</option>
+    </select>
+
+    <input type="time" id="filtroHora">
+
+    <button id="btnAplicar">Aplicar</button>
+    <button id="btnLimpiar">Limpiar</button>
+
+    <button id="btnExcelTodo">Excel TODO</button>
+    <button id="btnExcelMes" disabled>Excel MES</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Temperatura (°C)</th>
+        <th>Humedad (%)</th>
+        <th>Zona</th>
+      </tr>
+    </thead>
+    <tbody id="tablaBody">
+      <!-- JS llena -->
+    </tbody>
+  </table>
+
+  <div id="estado"></div>
+
+  <script src="historicosprueba.js"></script>
+</body>
+</html>
