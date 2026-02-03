@@ -9,15 +9,6 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="historicos.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Fondo general -->
-  <style>
-    body {
-      background: url("fondo_tabla.jpg") no-repeat center center fixed;
-      background-size: cover;
-      background-attachment: fixed;
-    }
-  </style>
 </head>
 
 <body>
@@ -62,7 +53,7 @@
   </header>
 
   <!-- Intro -->
-  <section class="seccion-estudio-blanco py-5">
+  <section class="seccion-estudio-blanco py-5 seccion-visible">
     <div class="container">
       <h2 class="titulo-estudio text-center mb-3">Base de datos histórica (Z1)</h2>
       <p class="texto-estudio mb-0">
@@ -73,7 +64,7 @@
   </section>
 
   <!-- Filtros + Descarga + Tabla -->
-  <section class="seccion-estudio-gris py-5">
+  <section class="seccion-estudio-gris py-5 seccion-visible">
     <div class="container">
 
       <div class="d-flex flex-wrap gap-3 align-items-end justify-content-between mb-3">
@@ -84,32 +75,28 @@
             <div class="col-12 col-md-auto">
               <label class="form-label text-white fw-semibold mb-1">Mes</label>
               <select id="filtroMes" class="form-select">
-                <option value="">Todos</option>
+                <option value="">Mes (todos)</option>
               </select>
             </div>
 
             <div class="col-12 col-md-auto">
               <label class="form-label text-white fw-semibold mb-1">Día</label>
               <select id="filtroDia" class="form-select" disabled>
-                <option value="">Todos</option>
+                <option value="">Día (todos)</option>
               </select>
             </div>
 
             <div class="col-12 col-md-auto">
               <label class="form-label text-white fw-semibold mb-1">Hora (HH:MM)</label>
-              <input id="filtroHora" type="time" class="form-control" step="60" />
+              <input type="time" id="filtroHora" class="form-control" step="60" />
             </div>
 
             <div class="col-12 col-md-auto">
-              <button id="btnAplicar" class="btn btn-primary w-100">
-                Aplicar filtros
-              </button>
+              <button id="btnAplicar" class="btn btn-primary w-100">Aplicar</button>
             </div>
 
             <div class="col-12 col-md-auto">
-              <button id="btnLimpiar" class="btn btn-outline-light w-100">
-                Limpiar
-              </button>
+              <button id="btnLimpiar" class="btn btn-outline-light w-100">Limpiar</button>
             </div>
           </div>
         </div>
@@ -117,15 +104,11 @@
         <!-- Descargas -->
         <div class="descargas-glass">
           <div class="d-flex flex-wrap gap-2 justify-content-end">
-            <button id="btnExcelTodo" class="btn btn-success">
-              Descargar TODO (Excel)
-            </button>
-            <button id="btnExcelMes" class="btn btn-success" disabled>
-              Descargar MES (Excel)
-            </button>
+            <button id="btnExcelTodo" class="btn btn-success">Excel TODO</button>
+            <button id="btnExcelMes" class="btn btn-success" disabled>Excel MES</button>
           </div>
           <div class="text-white-50 small mt-1 text-end">
-            *El Excel incluye fecha, hora, temperatura, humedad, timestamp y zona.
+            *Descarga CSV (Excel compatible).
           </div>
         </div>
 
@@ -146,17 +129,10 @@
               <th>Zona</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tablaBody">
             <!-- JS llena -->
           </tbody>
         </table>
-      </div>
-
-      <!-- Cargar más -->
-      <div class="d-flex justify-content-center mt-3">
-        <button id="btnCargarMas" class="btn btn-outline-light" style="display:none;">
-          Cargar más
-        </button>
       </div>
 
     </div>
@@ -167,10 +143,10 @@
     &copy; 2025 Universidad de Costa Rica - Proyecto de Monitoreo Climático
   </footer>
 
-  <!-- Scripts (IMPORTANTE: SOLO así, NO pegues el JS como texto dentro del HTML) -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Carga tu archivo historicos.js -->
-  <script src="historicos.js?v=1"></script>
+  <!-- IMPORTANTE: este archivo debe ser SOLO JS -->
+  <script src="historicos.js?v=2"></script>
 </body>
 </html>
